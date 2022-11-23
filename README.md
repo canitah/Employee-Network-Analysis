@@ -54,7 +54,7 @@ is to think of ways to improve collaboration throughout the company.
  The employee ID "598" communicated with the most number of distinct employees
  i.e. "77"
  
- <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/mostConnections.png" height="260" width="260" >
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/mostConnections.png" height="560" width="560" >
  
  
  
@@ -62,22 +62,22 @@ is to think of ways to improve collaboration throughout the company.
  A/c to given dataset the sales and operations department has sent and received 
  the most number of messages which makes them the most influential departments.
  
- <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/active_dpt.png" height="260" width="260" >
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/active_dpt.png" height="560" width="560" >
  
- <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/influential_dept.png" height="260" width="260" >
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/influential_dept.png" height="560" width="560" >
  
  Employee ID "605" is the most influential employee in the company as he sent 
  the most number of messages and also received good number of messages.
  
- <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/sentMostmsgs.png" height="260" width="260" >
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/sentMostmsgs.png" height="560" width="560" >
  
- <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/recMostmsgs.png" height="260" width="260" >
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/recMostmsgs.png" height="560" width="560" >
  
  ## The Most Active Location 
  The employees based in US and France are the most collaborative, as shown in the 
  graph below:
  
- <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/ActiveLocation.png" height="260" width="260" >
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/ActiveLocation.png" height="560" width="560" >
 
  
  
