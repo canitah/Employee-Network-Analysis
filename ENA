@@ -1,0 +1,190 @@
+# How can the company improve collaboration?
+ 
+ ## SUMMARY 
+
+From the analysis it is found that:
+
+ 1. Sales and Operation departments are the most active departments.
+ 2. Employee with the Id "598" has the most connections i.e. 77.
+ 3. The most influential department is Sales and the most influential employee is Employee "605".
+ 4. The most active location is US and France.
+ 4. After analyzing the given data, I would reccomend the company to focus on the marketing department to boost collaboration.
+ 
+### Step 1: Load the packages.
+
+install.packages('tidyverse')
+install.packages('skimr')
+install.packages("plotly")
+install.packages("gt")
+
+library(tidyverse) #wrangle data
+library(dplyr) #clean data
+library(lubridate)  #wrangle date attributes
+library(skimr) #get summary data
+library(ggplot2) #visualize data
+library(readr) #save csv 
+library(plotly) #pie chart
+library(gt) 
+
+### Step 2: Prepare the data and if needed, combine them in one data frame.
+
+messages <- read_csv('data/messages.csv', show_col_types = FALSE)
+employees <- read_csv('data/employees.csv', show_col_types = FALSE)
+
+messages
+employees
+
+dim(messages)
+dim(employees)
+
+#### Check for NA and Duplicates
+sum(is.na(messages))
+sum(is.na(employees)) 
+
+sum(duplicated(messages))
+sum(duplicated(employees))
+
+#### Remove duplicates
+messages <- messages[!duplicated(messages), ]
+sum(duplicated(messages))
+
+### Step 3: Examine the dataset.
+
+#### Checking for unique employees and department
+n_distinct(messages$sender)
+n_distinct(messages$receiver)
+n_distinct(employees$id)
+n_distinct(employees$department)
+
+#### Splitting date and time
+#### Add date column
+messages$date <- as.Date(messages$timestamp) 
+
+#### Add time column
+messages$time <- format(as.POSIXct(messages$timestamp),    
+                     format = "%H:%M:%S")
+#### Removing timestamp column
+messages <- messages [-3]
+
+messages
+
+### Step 4: Merged Datasets into two separate files senders and receivers log
+senders_log <- merge(messages, employees, by.x = "sender", by.y = "id", all.x = TRUE)
+colnames(senders_log)[6] = "senders_dept"
+
+#### Convert sender from num to chr
+senders_log$sender <- as.character(senders_log$sender)
+str(senders_log)
+senders_log
+
+receivers_log <- merge(messages, employees, by.x = "receiver", by.y = "id", all.x = TRUE)
+colnames(receivers_log)[6] = "receivers_dept"
+
+#### Convert receiver from num to chr
+receivers_log$receiver <- as.character(receivers_log$receiver)
+str(receivers_log)
+receivers_log
+
+## Analysing Dataset
+
+### The MOST ACTIVE DEPARTMENT IS SALES
+& The LEAST ACTIVE DEPARTMENT IS MARKETING
+
+#### Finding out the department that sent out the most messages
+active_dept <- senders_log %>% 
+group_by(senders_dept) %>% 
+summarise(messages_sent = n())
+
+active_dept
+
+#### bar plot
+ggplot(data = active_dept, aes(x = senders_dept, y = messages_sent, fill = messages_sent)) +
+geom_bar(stat = "identity") +
+labs(title = "ACTIVE DEPARTMENT",
+    x = "senders department",
+    y = "messages sent")
+
+### EMPLOYEE ID '598' has the most CONNECTIONS
+
+#### Finding out the employee that sent out the messages to the highest number of distinct employees
+most_connections <- senders_log %>% 
+  group_by(sender) %>% 
+  summarise(connections = n_distinct(receiver))
+
+most_connections <- filter(most_connections, connections >= 50)
+
+
+#### bar plot
+ggplot(data = most_connections, aes(x = sender, y = connections, fill = connections)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Employee with the most connections",
+       x = "sender",
+       y = "connections")
+       
+### MOST INFLUENTIAL DEPT is SALES as it sent and received the most number of messages
+
+#### Finding out the dpt that received the most number of msgs
+receivers_dpt <- receivers_log %>% 
+group_by(receivers_dept) %>% 
+summarise(messages_received = n())
+
+#### bar plot messages sent
+ggplot(data = active_dept, aes(x = senders_dept, y = messages_sent, fill = messages_sent)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Messages Sent",
+       x = "senders department",
+       y = "messages sent")
+
+#### bar plot messages received
+ggplot(data = receivers_dpt, aes(x = receivers_dept, y = messages_received, fill = messages_received)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Messages Received",
+       x = "receivers department",
+       y = "messages received")
+       
+### MOST INFLUENTIAL EMPLOYEE is "605" he sent the most number of msgs and also rec good number of msgs
+#### Finding out the employee who received the most number of msgs
+sent <- senders_log %>% 
+group_by(sender) %>% 
+summarise(sent_most_msg = n())
+
+sent <- filter(sent, sent_most_msg >= 150)
+
+#### bar plot messages sent
+ggplot(data = sent, aes(x = sender, y = sent_most_msg, fill = sent_most_msg)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Empployee who Sent most msgs",
+       x = "ID",
+       y = "messages sent")
+
+#### Finding out the employee who received the least number of msgs
+rec <- receivers_log %>% 
+group_by(receiver) %>% 
+summarise(rec_most_msg = n())
+
+rec <- filter(rec, rec_most_msg >= 35)
+
+#### bar plot messages received
+ggplot(data = rec, aes(x = receiver, y = rec_most_msg, fill = rec_most_msg)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Empployee who Received most msgs",
+       x = "Id",
+       y = "messages received")
+
+### Employees of which country were most active?
+#### Finding out the most active location
+active_location <- senders_log %>% 
+group_by(location) %>% 
+summarise(messages_sent = n())
+
+active_location <- arrange(active_location, desc(messages_sent))
+active_location
+
+#### bar plot
+ggplot(data = active_location, aes(x = location, y = messages_sent, fill = messages_sent)) +
+geom_bar(stat = "identity") +
+labs(title = "ACTIVE LOCATION",
+    x = "Location",
+    y = "Messages sent")
+    
+    
