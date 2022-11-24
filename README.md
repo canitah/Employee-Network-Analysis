@@ -37,6 +37,10 @@ is to think of ways to improve collaboration throughout the company.
  In the graph below we can see company is most populated with the US and France employees.
  
  <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/count_emp.png" height="460" width="560" >
+ 
+ ## Number of Employees in each department
+ 
+ 
 
  
  ## Merged Datasets
