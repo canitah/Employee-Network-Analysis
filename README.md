@@ -39,8 +39,9 @@ is to think of ways to improve collaboration throughout the company.
  <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/count_emp.png" height="460" width="560" >
  
  ## Number of Employees in each department
+ Sales and admin departments are most populated.
  
- 
+<img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/num_emp_dept.png" height="460" width="560"> 
 
  
  ## Merged Datasets
@@ -53,9 +54,10 @@ is to think of ways to improve collaboration throughout the company.
  ## Most Active Department
  By analyzing the dataset the Sales and the Operations Departments turned 
  out to be the most active departments in the company as they collaborated
- in the communication more than the other departments by sending the most 
- number of messages.
- 
+ in the communication more than the other departments by sending out the most 
+ number of messages. 
+ Although in the graph above, we have seen the most populated departments were
+ Sales and admin. This means admin department is lacking collaboration. 
  <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/active_dpt.png" height="460" width="560" >
  
  
