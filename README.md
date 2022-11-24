@@ -32,6 +32,9 @@ is to think of ways to improve collaboration throughout the company.
  2. Split timestamp into date and time columns.
  3. Created new columns.
  4. Changed datatypes.
+ 
+ ## Count of employees 
+ <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/active_dpt.png" height="460" width="560" >
 
  
  ## Merged Datasets
@@ -80,7 +83,17 @@ is to think of ways to improve collaboration throughout the company.
  <img src="https://github.com/canitah/Employee-Network-Analysis/blob/main/images/ActiveLocation.png" height="460" width="560" >
 
  
+ ## Reccomendations
  
+ Company should Focus more on the marketing department as it is clear from the analysis that marketing 
+ department was less collaborative.
+
+ To improve collaboration company could:
+
+  1. Create a supportive work environment.
+  2. Communicate expectations clearly.
+  3. Work with its employees' strengths.
+  4. Encourage team members.
  
  
  
